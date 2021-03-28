@@ -64,7 +64,7 @@ export class FileUploadService {
   }
 
   pushFileToStorageContribution(fileUpload: FileUpload): Observable<number> {
-    const filePath = `${this.basePathContribution}/${fileUpload.file.name}`;
+    const filePath = `${this.basePathContribution}/${fileUpload.file.name.replace(/ /g,"")}`;
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
 

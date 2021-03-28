@@ -54,8 +54,10 @@
                         </div><img class="img-fluid" [src]="contribution.contribution_path"></a>
                     <iframe class="img-fluid"
                         *ngIf="!typecheck(contribution.contribution_path)"
-                        [src]="contribution.contribution_path"
-                        frameborder="0"></iframe>
+                        [src]=""
+                        frameborder="0"
+                        ></iframe>
+                    <!-- <button (click)="downfile(contribution.id)">VIEW</button> -->
                     <div class="portfolio-caption">
                         <h4>{{contribution.title}}</h4>
                         <h5>{{contribution.vote}}</h5>
