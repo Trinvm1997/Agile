@@ -1,0 +1,94 @@
+<div class="navbar navbar-expand navbar-dark bg-dark">
+  <div *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdown>
+    <button class="btn" id="dropdownBasic2" ngbDropdownToggle id="dropdown">Menu</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="mt-2">
+      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/roles">Roles</button>
+      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/users">Users</button>
+      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/faculties">Faculties</button>
+      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4'" ngbDropdownItem routerLink="/contributions">Contributions</button>
+      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdownItem routerLink="/home">Home</button>
+      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdownItem routerLink="/dashboard">Dashboard</button>
+      <button (click)="logout()" ngbDropdownItem>Logout</button>
+    </div>
+  </div>
+  <div class="navbar-brand mx-auto" id="brand2">OldBuff</div>
+  <div *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="navbar-nav mr-auto" id="navi">
+    <li *ngIf="role == '1' || role == '2'" class="nav-item">
+      <a routerLink="/roles" class="nav-link">Roles</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2'" class="nav-item">
+      <a routerLink="/users" class="nav-link">Users</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2'" class="nav-item">
+      <a routerLink="/faculties" class="nav-link">Faculties</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4'"  class="nav-item">
+      <a routerLink="/contributions" class="nav-link">Contributions</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="nav-item">
+      <a routerLink="/home" class="nav-link">Home</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="nav-item">
+      <a routerLink="/dashboard" class="nav-link">Dashboard</a>
+    </li>
+    <li class="nav-item">
+      <a (click)="logout()" class="nav-link">Logout</a>
+    </li>
+  </div>
+  <div class="navbar-brand mx-auto" id="brand1">OldBuff</div>
+</div>
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <form>
+          <div class="form-group">
+            <label for="title">title</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              [(ngModel)]="contribution.title"
+              name="title"
+            />
+          </div>
+          <label>
+            <input
+              type="file"
+              class="text-nowrap text-truncate"
+              (change)="selectFile($event)"
+            />
+          </label>
+          
+          <button
+            class="btn btn-success btn-sm"
+            [disabled]="!selectedFiles"
+            (click)="upload()"
+          >
+            Upload
+          </button>
+          
+          <div *ngIf="currentFileUpload" class="progress mt-2">
+            <div
+              class="progress-bar progress-bar-info"
+              role="progressbar"
+              attr.aria-valuenow="{{ percentage }}"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              [ngStyle]="{ width: percentage + '%' }"
+            >
+              {{ percentage }}%
+            </div>
+          </div>
+        </form>
+  
+        <button (click)="saveContribution()" class="btn btn-success">Submit</button>
+        <button (click)="backClicked()" class="btn btn-primary" >Back</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>User was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newContribution()">Add</button>
+      </div>
+    </div>
+  </div>
+  

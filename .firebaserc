@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "comp1640-976c9": {
+      "hosting": {
+        "front-end": [
+          "comp1640-976c9"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+<div class="navbar navbar-expand navbar-dark bg-dark">
+  <div *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdown>
+    <button class="btn" id="dropdownBasic2" ngbDropdownToggle id="dropdown">Menu</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="mt-2">
+      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/roles">Roles</button>
+      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/users">Users</button>
+      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/faculties">Faculties</button>
+      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4'" ngbDropdownItem routerLink="/contributions">Contributions</button>
+      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdownItem routerLink="/home">Home</button>
+      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdownItem routerLink="/dashboard">Dashboard</button>
+      <button (click)="logout()" ngbDropdownItem>Logout</button>
+    </div>
+  </div>
+  <div class="navbar-brand mx-auto" id="brand2">OldBuff</div>
+  <div *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="navbar-nav mr-auto" id="navi">
+    <li *ngIf="role == '1' || role == '2'" class="nav-item">
+      <a routerLink="/roles" class="nav-link">Roles</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2'" class="nav-item">
+      <a routerLink="/users" class="nav-link">Users</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2'" class="nav-item">
+      <a routerLink="/faculties" class="nav-link">Faculties</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4'"  class="nav-item">
+      <a routerLink="/contributions" class="nav-link">Contributions</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="nav-item">
+      <a routerLink="/home" class="nav-link">Home</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="nav-item">
+      <a routerLink="/dashboard" class="nav-link">Dashboard</a>
+    </li>
+    <li class="nav-item">
+      <a (click)="logout()" class="nav-link">Logout</a>
+    </li>
+  </div>
+  <div class="navbar-brand mx-auto" id="brand1">OldBuff</div>
+</div>
+<div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by name"
+          [(ngModel)]="title"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchContribution()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Contribution List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let contribution of contributions; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveContribution(contribution, i)"
+        >
+          {{ contribution.title }}
+        </li>
+      </ul>
+  
+      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllContributions()">
+        Remove All
+      </button>
+      <button class="m-3 btn btn-sm btn-primary" routerLink="add">
+        Add
+      </button>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentContribution">
+        <h4>Contributions</h4>
+        <div>
+          <label><strong>title:</strong></label> {{ currentContribution.title }}
+        </div>
+  
+        <a class="badge badge-warning" routerLink="{{ currentContribution.id }}">
+          Edit
+        </a>
+      </div>
+  
+      <div *ngIf="!currentContribution">
+        <br />
+        <p>Please click on a Contribution...</p>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,32 @@
+.submit-form {
+    max-width: 400px;
+    margin: auto;
+  }
+
+  @media screen and (max-width: 2560px) {
+    #dropdown {
+      display: none;
+    }
+  
+    #brand2 {
+      display: none;
+    }
+  }
+  
+@media screen and (max-width: 768px) {
+  #dropdown {
+    display: inline-block;
+  }
+
+  #navi {
+    display: none;
+  }
+
+  #brand1 {
+    display: none;
+  }
+
+  #brand2 {
+    display: block;
+  }
+}

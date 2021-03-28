@@ -1,0 +1,195 @@
+<div class="navbar navbar-expand navbar-dark bg-dark">
+  <div *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdown>
+    <button class="btn" id="dropdownBasic2" ngbDropdownToggle id="dropdown">Menu</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="mt-2">
+      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/roles">Roles</button>
+      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/users">Users</button>
+      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/faculties">Faculties</button>
+      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4'" ngbDropdownItem routerLink="/contributions">Contributions</button>
+      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdownItem routerLink="/home">Home</button>
+      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdownItem routerLink="/dashboard">Dashboard</button>
+      <button (click)="logout()" ngbDropdownItem>Logout</button>
+    </div>
+  </div>
+  <div class="navbar-brand mx-auto" id="brand2">OldBuff</div>
+  <div *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="navbar-nav mr-auto" id="navi">
+    <li *ngIf="role == '1' || role == '2'" class="nav-item">
+      <a routerLink="/roles" class="nav-link">Roles</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2'" class="nav-item">
+      <a routerLink="/users" class="nav-link">Users</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2'" class="nav-item">
+      <a routerLink="/faculties" class="nav-link">Faculties</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4'"  class="nav-item">
+      <a routerLink="/contributions" class="nav-link">Contributions</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="nav-item">
+      <a routerLink="/home" class="nav-link">Home</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="nav-item">
+      <a routerLink="/dashboard" class="nav-link">Dashboard</a>
+    </li>
+    <li class="nav-item">
+      <a (click)="logout()" class="nav-link">Logout</a>
+    </li>
+  </div>
+  <div class="navbar-brand mx-auto" id="brand1">OldBuff</div>
+</div>
+<div>
+  <div class="edit-form">
+    <h4>Role</h4>
+    <form>
+      <div class="form-group">
+        <label for="username">User Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          [(ngModel)]="currentUser.username"
+          name="username"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-group">
+          <input
+          [type]="show?'text':'password'"
+          class="form-control"
+          id="password"
+          [(ngModel)]="currentUser.password"
+          name="password"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="password()">Show</button>
+        </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email"
+          [(ngModel)]="currentUser.email"
+          name="email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="telephone">Telephone</label>
+        <input
+          type="text"
+          class="form-control"
+          id="telephone"
+          [(ngModel)]="currentUser.telephone"
+          name="telephone"
+        />
+      </div>
+      <div class="form-group">
+        <label for="avatar_path">Avatar</label>
+        <img
+          [src]="currentUser.avatar_path"
+          alt="avatar"
+          class="form-control"
+          id="avatar_path"
+          name="avatar_path"
+        />
+      </div>
+      <label>
+        <input
+          type="file"
+          class="text-nowrap text-truncate"
+          (change)="selectFile($event)"
+        />
+      </label>
+      
+      <button
+        class="btn btn-success btn-sm"
+        [disabled]="!selectedFiles"
+        (click)="upload()"
+      >
+        Upload
+      </button>
+      
+      <div *ngIf="currentFileUpload" class="progress mt-2">
+        <div
+          class="progress-bar progress-bar-info"
+          role="progressbar"
+          attr.aria-valuenow="{{ percentage }}"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [ngStyle]="{ width: percentage + '%' }"
+        >
+          {{ percentage }}%
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="birthday">Birthday</label>
+        <div class="input-group">
+          <input class="form-control"
+                 name="dp" [(ngModel)]="birthday" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sex">Gender</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+            <input type="radio" [value]="true" [ngModel]="currentUser.sex_boolean" name="gender" >
+            </div>
+          </div>
+          <p class="form-control mr-1">Male</p>
+          <div class="input-group-prepend ml-1">
+            <div class="input-group-text">
+            <input type="radio" [value]="false" [ngModel]="currentUser.sex_boolean" name="gender">
+            </div>
+          </div>
+          <p class="form-control mr-1">Female</p>
+          <div class="input-group-prepend ml-1">
+            <div class="input-group-text">
+            <input type="radio" [value]="null" [ngModel]="currentUser.sex_boolean" name="gender">
+            </div>
+          </div>
+          <p class="form-control">Other</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="faculty">Faculty</label>
+        <select class="custom-select" [(ngModel)]="currentUser.faculty" name="faculty">
+          <option [value]=1>Information Technology</option>
+          <option [value]=3>Graphic Design</option>
+          <option [value]=4>Business Administration</option>
+          <option [value]=5>Admin</option>
+          <option [value]=6>Manager</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="role">Role</label>
+        <select class="custom-select" [(ngModel)]="currentUser.role" name="role">
+          <option [value]=1>admin</option>
+          <option [value]=2>manager</option>
+          <option [value]=3>coordinator</option>
+          <option [value]=4>student</option>
+          <option [value]=5>guest</option>
+        </select>
+      </div>
+    </form>
+    <button class="badge badge-danger mr-2" (click)="deleteUser()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateUser()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+</div>
