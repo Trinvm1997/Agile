@@ -14,7 +14,7 @@ export class ContributionsListComponent implements OnInit {
   currentIndex = -1;
   title = '';
   faculty = localStorage.getItem("faculty");
-  check = (this.faculty == "5" || this.faculty == "6");
+  check = this.faculty == "1";
   role = localStorage.getItem("role");
 
 

@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Contribution } from 'src/app/models/contribution.model';
 import { ContributionService } from 'src/app/services/contribution.service';
+import { VoteService } from 'src/app/services/vote.service';
+import { DownloadService } from 'src/app/services/download.service';
 
 @Component({
   selector: 'app-home-pages',
@@ -19,7 +21,9 @@ export class HomePagesComponent implements OnInit {
     private contributionService: ContributionService,
     private sanitizer: DomSanitizer,
     private router: Router,
-    private loginService: LoginService) { }
+    private loginService: LoginService,
+    private voteService: VoteService,
+    private downloadService: DownloadService) { }
 
   ngOnInit(): void {
     this.retrieveContributions();
@@ -52,5 +56,26 @@ export class HomePagesComponent implements OnInit {
   
   typecheck(e) {
     return typeof(e) == "string";
+  }
+
+  upvote(id) {
+    this.voteService.upvote(id)
+    .subscribe(res => {
+      console.log(res);
+    });
+  }
+
+  downvote(id) {
+    this.voteService.downvote(id)
+    .subscribe(res => {
+      console.log(res);
+    });
+  }
+
+  download() {
+    this.downloadService.download()
+    .subscribe(res => {
+      console.log(res);
+    });
   }
 }

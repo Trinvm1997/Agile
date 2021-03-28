@@ -44,6 +44,7 @@
                 <div class="col-lg-12 text-center">
                     <h2 class="text-uppercase section-heading">FGW magazine</h2>
                     <h3 class="section-subheading text-muted">HAPPY SCHOOLING !!!</h3>
+                    <button (click)="download()">Download</button>
                 </div>
             </div>
             <div class="row">
@@ -57,6 +58,11 @@
                         frameborder="0"></iframe>
                     <div class="portfolio-caption">
                         <h4>{{contribution.title}}</h4>
+                        <h5>{{contribution.vote}}</h5>
+                        <h5>{{contribution.id}}</h5>
+                        <button (click)="upvote(contribution.id)">UP</button>
+                        <button (click)="downvote(contribution.id)">DOWN</button>
+                        <h5>{{contribution.check_selected}}</h5>
                     </div>
                 </div>
             </div>
