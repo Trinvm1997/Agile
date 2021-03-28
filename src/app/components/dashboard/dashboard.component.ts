@@ -6,18 +6,21 @@ import * as pluginDataLabels  from 'chartjs-plugin-annotation';
 import { ContributionService } from 'src/app/services/contribution.service';
 import { Contribution } from 'src/app/models/contribution.model';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
   role = localStorage.getItem("role");
   contributions?: Contribution[];
   IT: number;
   BA: number;
   GD: number;
   total: number;
+
   pieChartOptions: ChartOptions = {
     responsive: true,
     legend: {
@@ -44,6 +47,23 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
+  barChartOptions: ChartOptions = {
+    responsive: true,
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: { xAxes: [{}], yAxes: [{}] },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      }
+    }
+  };
+  barChartLabels: Label[] = ['IT', 'BA', 'GD'];
+  barChartType: ChartType = 'bar';
+  barChartLegend = true;
+  barChartPlugins = [pluginDataLabels];
+
+  barChartData: ChartDataSets[] = [{data: [0,0,0], label: "Number of contributions"}];
 
   constructor(
     private loginService: LoginService,
@@ -51,6 +71,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveContributions();
+    setTimeout(() => {
+      this.chart.chart.update()
+  }, 0);
   }
 
   retrieveContributions(): void {
@@ -66,9 +89,9 @@ export class DashboardComponent implements OnInit {
           this.pieChartDataPer.push(this.IT/this.total*100);
           this.pieChartDataPer.push(this.BA/this.total*100);
           this.pieChartDataPer.push(this.GD/this.total*100);
-          this.pieChartDataNum.push(this.IT);
-          this.pieChartDataNum.push(this.BA);
-          this.pieChartDataNum.push(this.GD);
+          this.barChartData[0]["label"] = "Number of contributions";
+          this.barChartData[0]["data"] = [this.IT,this.BA,this.GD];
+          console.log(this.barChartData);
         },
         error => {
           console.log(error);

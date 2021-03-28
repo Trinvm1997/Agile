@@ -51,16 +51,15 @@
         </canvas>
     </div>
     <h2 class="text-center"> Number of contributions in each faculty</h2>
-    <div class="chart">
-        <canvas baseChart
-            [data]="pieChartDataNum"
-            [labels]="pieChartLabels"
-            [chartType]="pieChartType"
-            [options]="pieChartOptions"
-            [plugins]="pieChartPlugins"
-            [colors]="pieChartColors"
-            [legend]="pieChartLegend">
-        </canvas>
+    <div style="display: block">
+      <canvas baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType">
+      </canvas>
     </div>
 </div>
 
