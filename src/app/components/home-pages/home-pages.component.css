@@ -25,6 +25,10 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   height: 225px;
   border: 7px solid #fff;
 }
+.page-footer{
+  background-color: darkgray !important;
+  padding-top: 20px;
+}
 
 @media screen and (max-width: 2560px) {
     #dropdown {
