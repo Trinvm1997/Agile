@@ -27,7 +27,6 @@ import { ContributionsListComponent } from './components/contribution/contributi
 import { LoginComponent } from './components/login/login.component';
 import { HomePagesComponent } from './components/home-pages/home-pages.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +46,6 @@ import { HeaderComponent } from './components/header/header.component';
     LoginComponent,
     HomePagesComponent,
     DashboardComponent,
-    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +58,7 @@ import { HeaderComponent } from './components/header/header.component';
     ChartsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
