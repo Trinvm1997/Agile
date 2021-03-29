@@ -52,7 +52,7 @@ export class HomePagesComponent implements OnInit {
   bypass(e) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(e)
   }
-  
+
   typecheck(e) {
     return typeof(e) == "string";
   }
@@ -76,6 +76,8 @@ export class HomePagesComponent implements OnInit {
     .subscribe(res => {
       console.log(res);
     });
+
+    this.downloadService.downloadViaUrl();
   }
 
   // downfile(id) {
