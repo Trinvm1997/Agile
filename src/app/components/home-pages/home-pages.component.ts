@@ -36,7 +36,7 @@ export class HomePagesComponent implements OnInit {
           this.contributions = data;
           this.contributions.filter(e => e.contribution_path.slice(-57,-56) == 'd')
           .forEach(e => {
-            e.contribution_path = this.bypass(e.contribution_path);
+            e.contribution_path = this.bypass(e.contribution_path+"&embedded=true");
           });
           console.log(this.contributions);
         },

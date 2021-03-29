@@ -49,25 +49,22 @@
             </div>
             <div class="row">
                 <div class="col-sm-6 col-md-4" *ngFor="let contribution of contributions" style="height: 600px;">
-                    <a *ngIf="typecheck(contribution.contribution_path)" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                        </div><img class="img-fluid" style="width: 300px; height: 400px; object-fit: cover; " [src]="contribution.contribution_path"></a>
-                    <iframe class="img-fluid" style="height: 400px;"
+                    <div class="card" style="width: 18rem;">
+                        <img *ngIf="typecheck(contribution.contribution_path)" class="img-fluid" style="width: 300px; height: 400px; object-fit: cover; " [src]="contribution.contribution_path">
+                        <iframe class="img-fluid" style="height: 400px;"
                         *ngIf="!typecheck(contribution.contribution_path)"
-                        [src]=""
-                        frameborder="0"
-                        ></iframe>
-                    <!-- <button (click)="downfile(contribution.id)">VIEW</button> -->
-                    <div class="portfolio-caption">
-                        <h4>{{contribution.title}}</h4>
-                        <div>
-                            <h5 style="display: inline-block;">Vote: {{contribution.vote}}</h5>
-                            <h5 style="display: inline-block; margin-left: 100px;">ID: {{contribution.id}}</h5>
+                        [src]="contribution.contribution_path"
+                        frameborder="0"></iframe>
+                        <div class="card-body">
+                          <h5 class="card-title" style="align-items: center;">{{contribution.title}}</h5>
+                          <!-- <p class="card-text">Pellentesque habitant morbi tristique</p> -->
+                          <div style="display: flex; justify-content: space-between;">
+                            <button type="button" class="btn btn-primary btn-rounded" (click)="upvote(contribution.id)"><img src="https://img.icons8.com/cotton/32/000000/facebook-like--v1.png"/></button>
+                            <h5 style="align-self: center;">{{contribution.vote}}</h5>
+                            <button type="button" class="btn btn-secondary btn-rounded" (click)="downvote(contribution.id)"><img src="https://img.icons8.com/cotton/32/000000/thumbs-down--v4.png"/></button>
+                          </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-rounded" (click)="upvote(contribution.id)">UP</button>
-                        <button type="button" class="btn btn-secondary btn-rounded" (click)="downvote(contribution.id)">DOWN</button>
-                        <h5>{{contribution.check_selected}}</h5>
-                    </div>
+                      </div>
                 </div>
             </div>
         </div>
