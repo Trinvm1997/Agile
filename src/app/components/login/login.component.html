@@ -39,43 +39,48 @@
 </nav>
 <!-- <img src="assets/img/team/Background.png" style="width: 100%;position: fixed; opacity: 0.7;" />  -->
 <div style="display: flex;">
-  <div>
-    <form class="login-form" >
-      <div class="form-group" >
-        <label for="uname">Username</label>
-        <input
-          type="text"
-          class="form-control"
-          id="uname"
-          placeholder="Enter username"
-          name="uname"
-          [(ngModel)]="login.username"
-          required>
+  <div class="container">
+    <div class="row" style="margin: 20% auto; border: 2px black solid; padding: 20px;">
+      <div class="col-sm " style="background-color: lightgray;">
+        <form class="login-form" >
+          <div class="form-group" >
+            <label for="uname">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="uname"
+              placeholder="Enter username"
+              name="uname"
+              [(ngModel)]="login.username"
+              required>
+          </div>
+          <div *ngIf="login.username == ''" style="color: red;font-size:small;" class="mb-1">Your username must not be empty !</div>
+          <div class="form-group" >
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Enter password"
+              name="password"
+              [(ngModel)]="login.password"
+              required>
+          </div>
+          <div *ngIf="login.password == ''" style="color: red;font-size:small;" class="mb-1">Your password must not be empty !</div>
+          <div class="form-group form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" name="remember" (change)="check()" [checked]="checked"> I agree on Terms & Conditions
+            </label>
+          </div>
+          <div *ngIf="checked == false" style="color: red;font-size:small;" class="mb-1">Please check this box.</div>
+          <button type="submit" style="text-align: center; margin-left: 40%; margin-top: 10%;" class="btn btn-light;" (click)="submit()">Submit</button>
+        </form>
       </div>
-      <div *ngIf="login.username == ''" style="color: red;font-size:small;" class="mb-1">Your username must not be empty !</div>
-      <div class="form-group" >
-        <label for="password">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="password"
-          placeholder="Enter password"
-          name="password"
-          [(ngModel)]="login.password"
-          required>
+     
+      <div class="col-sm" style="padding: 0px;" >
+        <img  src="assets\img\Background.png" style="height: 400px; width: 550px;">
       </div>
-      <div *ngIf="login.password == ''" style="color: red;font-size:small;" class="mb-1">Your password must not be empty !</div>
-      <div class="form-group form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" name="remember" (change)="check()" [checked]="checked"> I agree on Terms & Conditions
-        </label>
-      </div>
-      <div *ngIf="checked == false" style="color: red;font-size:small;" class="mb-1">Please check this box.</div>
-      <button type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
-    </form>
-  </div>
- 
-  <div >
-    <img  src="assets/img/Background.png" style="height: 400px;width: auto;">
+
+    </div>
   </div>
 </div>

@@ -48,10 +48,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6 col-md-4" *ngFor="let contribution of contributions" style="height: 600px;">
+                <div class="col-sm-6 col-md-4" *ngFor="let contribution of contributions" style="height: 400px;">
                     <div class="card" style="width: 18rem;">
-                        <img *ngIf="typecheck(contribution.contribution_path)" class="img-fluid" style="width: 300px; height: 400px; object-fit: cover; " [src]="contribution.contribution_path">
-                        <iframe class="img-fluid" style="height: 400px;"
+                        <img *ngIf="typecheck(contribution.contribution_path)" class="img-fluid" style="width: 300px; height: 200px; object-fit: cover; " [src]="contribution.contribution_path">
+                        <iframe class="img-fluid" style="height: 200px;"
                         *ngIf="!typecheck(contribution.contribution_path)"
                         [src]="contribution.contribution_path"
                         frameborder="0"></iframe>
