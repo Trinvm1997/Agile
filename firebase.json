@@ -2,7 +2,7 @@
   "hosting": [
     {
       "target": "front-end",
-      "public": "dist/front-end",
+      "public": "dist/old-buff",
       "ignore": [
         "**/.*"
       ],
