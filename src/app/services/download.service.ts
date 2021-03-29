@@ -5,6 +5,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
 import firebase from "firebase/app";
 import "firebase/storage";
+import * as fileSaver from 'file-saver';
 
 const baseUrl = 'https://fgwmag.herokuapp.com/api/Home/Download';
 
@@ -22,20 +23,6 @@ export class DownloadService {
     return this.http.get(`${baseUrl}`);
   }
 
-  downloadCreateRef() {
-    // [START storage_download_create_ref]
-    // Create a reference with an initial file path and name
-    var storage = firebase.storage();
-    var pathReference = storage.ref('download.zip');
-
-    // Create a reference from a Google Cloud Storage URI
-    var gsReference = storage.refFromURL('gs://comp1640-976c9.appspot.com/download.zip');
-
-    // Create a reference from an HTTPS URL
-    // Note that in the URL, characters are URL escaped!
-    var httpsReference = storage.refFromURL('https://firebasestorage.googleapis.com/b/comp1640-976c9.appspot.com/o/download.zip');
-    // [END storage_download_create_ref]
-  }
 
   downloadViaUrl() {
     const storageRef = firebase.storage().ref();
@@ -44,15 +31,17 @@ export class DownloadService {
     storageRef.child('download.zip').getDownloadURL()
       .then((url) => {
         // `url` is the download URL for 'images/stars.jpg'
-        url = "gs://comp1640-976c9.appspot.com/download.zip";
+        url = "https://firebasestorage.googleapis.com/v0/b/comp1640-976c9.appspot.com/o/download.zip?alt=media&token=49e6bc0e-8cf8-414d-8c0a-802df117fa0c";
         // This can be downloaded directly:
         var xhr = new XMLHttpRequest();
         xhr.responseType = 'blob';
         xhr.onload = (event) => {
           var blob = xhr.response;
+          fileSaver.saveAs(blob, 'contributions.zip');
         };
         xhr.open('GET', url);
         xhr.send();
+
       })
       .catch((error) => {
         // Handle any errors
