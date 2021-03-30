@@ -36,7 +36,7 @@ export class HomePagesComponent implements OnInit {
           this.contributions = data;
           this.contributions.filter(e => e.contribution_path.slice(-57,-56) == 'd')
           .forEach(e => {
-            e.contribution_path = this.bypass(e.contribution_path+"&embedded=true");
+            e.contribution_path = this.bypass("https://docs.google.com/gview?url="+e.contribution_path+"&embedded=true");
           });
           console.log(this.contributions);
         },
@@ -79,11 +79,4 @@ export class HomePagesComponent implements OnInit {
 
     this.downloadService.downloadViaUrl();
   }
-
-  // downfile(id) {
-  //   this.contributions.filter(e => e.id == id).map(e => {
-  //     e.contribution_path.changingThisBreaksApplicationSecurity = e.contribution_path.changingThisBreaksApplicationSecurity.replace("&embedded=true","");
-  //   });
-  //   this.retrieveContributions();
-  // }
 }

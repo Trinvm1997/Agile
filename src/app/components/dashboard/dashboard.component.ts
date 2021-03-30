@@ -19,6 +19,9 @@ export class DashboardComponent implements OnInit {
   IT: number;
   BA: number;
   GD: number;
+  ITper: any;
+  BAper: any;
+  GDper: any;
   total: number;
 
   pieChartOptions: ChartOptions = {
@@ -38,6 +41,7 @@ export class DashboardComponent implements OnInit {
   pieChartLabels: Label[] = ["IT","BA","GD"];
   pieChartDataPer: number[] = [];
   pieChartDataNum: number[] = [];
+  pieChartDataCon: number[] = [];
   pieChartType: ChartType = 'pie';
   pieChartLegend = true;
   pieChartPlugins = [pluginDataLabels];
@@ -47,33 +51,12 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
-  barChartOptions: ChartOptions = {
-    responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
-    scales: { xAxes: [{}], yAxes: [{}] },
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'end',
-      }
-    }
-  };
-  barChartLabels: Label[] = ['IT', 'BA', 'GD'];
-  barChartType: ChartType = 'bar';
-  barChartLegend = true;
-  barChartPlugins = [pluginDataLabels];
-
-  barChartData: ChartDataSets[] = [{data: [0,0,0], label: "Number of contributions"}];
-
   constructor(
     private loginService: LoginService,
     private contributionService: ContributionService) { }
 
   ngOnInit(): void {
     this.retrieveContributions();
-    setTimeout(() => {
-      this.chart.chart.update()
-  }, 0);
   }
 
   retrieveContributions(): void {
@@ -86,12 +69,18 @@ export class DashboardComponent implements OnInit {
           this.IT = this.contributions.filter(e => e.faculty == 2).length;
           this.BA = this.contributions.filter(e => e.faculty == 3).length;
           this.GD = this.contributions.filter(e => e.faculty == 4).length;
+          this.ITper = this.groupBy(this.contributions.filter(e => e.faculty == 2),e => e.user);
+          this.BAper = this.groupBy(this.contributions.filter(e => e.faculty == 3),e => e.user);
+          this.GDper = this.groupBy(this.contributions.filter(e => e.faculty == 4),e => e.user);
           this.pieChartDataPer.push(this.IT/this.total*100);
           this.pieChartDataPer.push(this.BA/this.total*100);
           this.pieChartDataPer.push(this.GD/this.total*100);
-          this.barChartData[0]["label"] = "Number of contributions";
-          this.barChartData[0]["data"] = [this.IT,this.BA,this.GD];
-          console.log(this.barChartData);
+          this.pieChartDataNum.push(this.IT);
+          this.pieChartDataNum.push(this.BA);
+          this.pieChartDataNum.push(this.GD);
+          this.pieChartDataCon.push(this.ITper.size);
+          this.pieChartDataCon.push(this.BAper.size);
+          this.pieChartDataCon.push(this.GDper.size);
         },
         error => {
           console.log(error);
@@ -113,5 +102,19 @@ export class DashboardComponent implements OnInit {
 
   changeLegendPosition(): void {
     this.pieChartOptions.legend.position = this.pieChartOptions.legend.position === 'left' ? 'top' : 'left';
+  }
+
+  groupBy(list, keyGetter) {
+    const map = new Map();
+    list.forEach((item) => {
+         const key = keyGetter(item);
+         const collection = map.get(key);
+         if (!collection) {
+             map.set(key, [item]);
+         } else {
+             collection.push(item);
+         }
+    });
+    return map;
   }
 }
