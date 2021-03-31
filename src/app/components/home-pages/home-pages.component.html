@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6 col-md-4" *ngFor="let contribution of contributions" style="height: 400px;">
+                <!-- <div class="col-sm-6 col-md-4" *ngFor="let contribution of contributions" style="height: 400px;">
                     <div class="card" style="width: 18rem;">
                         <img *ngIf="typecheck(contribution.contribution_path)" class="img-fluid" style="width: 300px; height: 200px; object-fit: cover; " [src]="contribution.contribution_path">
                         <iframe class="img-fluid"
@@ -65,8 +65,48 @@
                           </div>
                         </div>
                       </div>
+                </div> -->
+
+                <div class="col-md-4" *ngFor="let contribution of contributions">
+                    <div class="productbox">
+                        <div class="fadeshop">
+                            <div class="captionshop text-center" style="display: none;">
+                                <h3>Item Name</h3>
+                                <p>
+                                     This is a short excerpt to generally describe what the item is about.
+                                </p>
+                                <p>
+                                    <a href="#" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Purchase</a>
+                                    <a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
+                                </p>
+                            </div>
+                            <span class="maxproduct"><img *ngIf="typecheck(contribution.contribution_path)" class="img-fluid" style="width: 300px; height: 200px; object-fit: cover; " [src]="contribution.contribution_path">
+                                <iframe class="img-fluid"
+                                style="width: 300px; height: 200px; object-fit: cover; "
+                                *ngIf="!typecheck(contribution.contribution_path)"
+                                [src]="contribution.contribution_path"
+                                frameborder="0"></iframe>
+                            </span>
+                            
+                        </div>
+                        <div class="product-details">
+                            <a href="#">
+                            <h1>{{contribution.title}}</h1>
+                            </a>
+                            
+                            <div class="card-body">
+                                
+                                <div style="display: flex; justify-content: space-between;">
+                                  <button type="button" class="btn btn-primary btn-rounded" (click)="upvote(contribution.id)"><img src="https://img.icons8.com/cotton/32/000000/facebook-like--v1.png"/></button>
+                                  <h5 style="align-self: center;">{{contribution.vote}}</h5>
+                                  <button type="button" class="btn btn-secondary btn-rounded" (click)="downvote(contribution.id)"><img src="https://img.icons8.com/cotton/32/000000/thumbs-down--v4.png"/></button>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 <div >
