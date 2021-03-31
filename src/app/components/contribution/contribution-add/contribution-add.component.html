@@ -79,9 +79,12 @@
               {{ percentage }}%
             </div>
           </div>
+          <div class="form-group">
+            <input type="checkbox" name="remember" (change)="check()" [checked]="checked"> I agree on Terms & Conditions
+          </div>
         </form>
-  
-        <button (click)="saveContribution()" class="btn btn-success">Submit</button>
+
+        <button *ngIf="checked" (click)="saveContribution()" class="btn btn-success">Submit</button>
         <button (click)="backClicked()" class="btn btn-primary" >Back</button>
       </div>
   
