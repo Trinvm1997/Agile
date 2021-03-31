@@ -15,19 +15,21 @@ export class ContributionAddComponent implements OnInit {
   contribution: Contribution = {
     user: "",
     faculty: "",
-    file_type: "1",
+    filetype: "1",
     title: "", 
     note: "",
     contribution_path: "",
     upload_time: new Date(),
     vote: 0,
-    check_selected: false
+    check_selected: false,
+    comment: null
   }
   role = localStorage.getItem("role");
   submitted = false;
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
   percentage: number;
+  checked: boolean; 
 
   constructor(
     private contributionService: ContributionService,
@@ -36,7 +38,7 @@ export class ContributionAddComponent implements OnInit {
     private loginService: LoginService) { }
 
   ngOnInit(): void {
-    
+    this.checked = false;    
   }
 
   saveContribution(): void {
@@ -69,13 +71,14 @@ export class ContributionAddComponent implements OnInit {
     this.contribution = {
       user: "",
       faculty: "",
-      file_type: "1",
+      filetype: "1",
       title: "", 
       note: "",
       contribution_path: "",
       upload_time: new Date(),
       vote: 0,
-      check_selected: false
+      check_selected: false,
+      comment: null
     };
     this.percentage = 0;
   }
@@ -100,6 +103,10 @@ export class ContributionAddComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  check() {
+    this.checked = !this.checked;
   }
 
   logout() {
