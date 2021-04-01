@@ -5,7 +5,7 @@
       <button *ngIf="role == '7' || role == '9'" ngbDropdownItem routerLink="/roles">Roles</button>
       <button *ngIf="role == '7' || role == '9'" ngbDropdownItem routerLink="/users">Users</button>
       <button *ngIf="role == '7' || role == '9'" ngbDropdownItem routerLink="/faculties">Faculties</button>
-      <button *ngIf="role == '7' || role == '9' || role == '10'" ngbDropdownItem routerLink="/contributions">Contributions</button>
+      <button *ngIf="role == '7' || role == '9' || role == '10' || role == '8'" ngbDropdownItem routerLink="/contributions">Contributions</button>
       <button *ngIf="role == '7' || role == '9' || role == '10' || role == '8' || role == '11'" ngbDropdownItem routerLink="/home">Home</button>
       <button *ngIf="role == '7' || role == '9' || role == '10' || role == '8' || role == '11'" ngbDropdownItem routerLink="/dashboard">Dashboard</button>
       <button (click)="logout()" routerLink="/login" ngbDropdownItem>Logout</button>
@@ -22,7 +22,7 @@
     <li *ngIf="role == '7' || role == '9'" class="nav-item">
       <a routerLink="/faculties" class="nav-link">Faculties</a>
     </li>
-    <li *ngIf="role == '7' || role == '9' || role == '10'"  class="nav-item">
+    <li *ngIf="role == '7' || role == '9' || role == '10' || role == '8'"  class="nav-item">
       <a routerLink="/contributions" class="nav-link">Contributions</a>
     </li>
     <li *ngIf="role == '7' || role == '9' || role == '10' || role == '8' || role == '11'" class="nav-item">
@@ -89,7 +89,7 @@
       </div>
   
       <div *ngIf="submitted">
-        <h4>User was submitted successfully!</h4>
+        <h4>Contribution was submitted successfully!</h4>
         <button class="btn btn-success" (click)="newContribution()">Add</button>
       </div>
     </div>
