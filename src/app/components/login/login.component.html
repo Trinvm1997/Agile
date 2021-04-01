@@ -1,90 +1,42 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-  <div *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdown class="d-inline-block">
+<div class="navbar navbar-expand navbar-dark bg-dark">
+  <div *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdown>
     <button class="btn" id="dropdownBasic2" ngbDropdownToggle id="dropdown">Menu</button>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="mt-2">
-      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="roles">Roles</button>
-      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="users">Users</button>
-      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="faculties">Faculties</button>
-      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4'" ngbDropdownItem routerLink="contributions">Contributions</button>
-      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdownItem routerLink="home">Home</button>
-      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdownItem routerLink="dashboard">Dashboard</button>
-      <button (click)="logout()" ngbDropdownItem>Logout</button>
+      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/roles">Roles</button>
+      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/users">Users</button>
+      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/faculties">Faculties</button>
+      <button *ngIf="role == '1' || role == '2' || role == '3'" ngbDropdownItem routerLink="/contributions">Contributions</button>
+      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdownItem routerLink="/home">Home</button>
+      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdownItem routerLink="/dashboard">Dashboard</button>
+      <button (click)="logout()" routerLink="/login" ngbDropdownItem>Logout</button>
     </div>
   </div>
+  <div class="navbar-brand mx-auto" id="brand2">OldBuff</div>
   <div *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="navbar-nav mr-auto" id="navi">
     <li *ngIf="role == '1' || role == '2'" class="nav-item">
-      <a routerLink="roles" class="nav-link">Roles</a>
+      <a routerLink="/roles" class="nav-link">Roles</a>
     </li>
     <li *ngIf="role == '1' || role == '2'" class="nav-item">
-      <a routerLink="users" class="nav-link">Users</a>
+      <a routerLink="/users" class="nav-link">Users</a>
     </li>
     <li *ngIf="role == '1' || role == '2'" class="nav-item">
-      <a routerLink="faculties" class="nav-link">Faculties</a>
+      <a routerLink="/faculties" class="nav-link">Faculties</a>
     </li>
-    <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4'"  class="nav-item">
-      <a routerLink="contributions" class="nav-link">Contributions</a>
-    </li>
-    <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="nav-item">
-      <a routerLink="home" class="nav-link">Home</a>
+    <li *ngIf="role == '1' || role == '2' || role == '3'"  class="nav-item">
+      <a routerLink="/contributions" class="nav-link">Contributions</a>
     </li>
     <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="nav-item">
-      <a routerLink="dashboard" class="nav-link">Dashboard</a>
+      <a routerLink="/home" class="nav-link">Home</a>
+    </li>
+    <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="nav-item">
+      <a routerLink="/dashboard" class="nav-link">Dashboard</a>
     </li>
     <li class="nav-item">
-      <a (click)="logout()" class="nav-link">Logout</a>
+      <a routerLink="/login" (click)="logout()" class="nav-link">Logout</a>
     </li>
   </div>
   <div class="navbar-brand mx-auto" id="brand1">OldBuff</div>
-  <div class="navbar-brand mx-auto" id="brand2">OldBuff</div>
-</nav>
-<!-- <img src="assets/img/team/Background.png" style="width: 100%;position: fixed; opacity: 0.7;" />  -->
-<!-- <div style="display: flex;">
-  <div class="container">
-    <div class="row" style="margin: 20% auto; border: 2px black solid; padding: 20px;">
-      <div class="col-sm " style="background-color: lightgray;">
-        <form class="login-form" >
-          <div class="form-group" >
-            <strong for="uname" >Username :</strong>
-            <input
-              type="text"
-              class="form-control"
-              id="uname"
-              placeholder="Enter username"
-              name="uname"
-              [(ngModel)]="login.username"
-              required>
-          </div>
-          <div *ngIf="login.username == ''" style="color: red;font-size:small;" class="mb-1">Your username must not be empty !</div>
-          <div class="form-group" >
-            <strong for="password">Password :</strong>
-            <input 
-              type="password"
-              class="form-control"
-              id="password"
-              placeholder="Enter password"
-              name="password"
-              [(ngModel)]="login.password"
-              required>
-          </div>
-          <div *ngIf="login.password == ''" style="color: red;font-size:small;" class="mb-1">Your password must not be empty !</div>
-          <div class="form-group form-check">
-            <strong class="form-check-label">
-              <input class="form-check-input" type="checkbox" name="remember" (change)="check()" [checked]="checked"> I agree on Terms & Conditions
-            </strong>
-          </div>
-          <div *ngIf="checked == false" style="color: red;font-size:small;" class="mb-1">Please check this box.</div>
-          <button type="submit" style="text-align: center; margin-left: 40%; margin-top: 10%;" class="btn btn-light;" (click)="submit()">Submit</button>
-        </form>
-      </div>
-     
-      <div class="col-sm" style="padding: 0px;" >
-        <img  src="assets\img\Background.png" style="height: 400px; width: 550px;">
-      </div>
-      
-    </div>
-  </div>
-</div> -->
-
+</div>
 
 <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
   <div class="container">
@@ -96,7 +48,6 @@
         <div class="col-md-7">
           <div class="card-body">
             <div class="brand-wrapper">
-              <!-- <img src="assets/images/logo.svg" alt="logo" class="logo"> -->
             </div>
             <p class="login-card-description">Sign into your account</p>
             <form action="#!">

@@ -45,15 +45,13 @@ export class HomePagesComponent implements OnInit {
           .forEach(e => {
             e.contribution_path = this.bypass("https://docs.google.com/gview?url="+e.contribution_path+"&embedded=true");
           });
-          console.log(this.contributions);
-          let user = (this.groupBy(this.contributions.filter(e => e.faculty == 2),e => e.user));
-          let userCon = user.get(parseInt(this.id));
-          console.log(userCon)
-          for(let i = 0; i < userCon.length; i++){
-            if(new Date(userCon[i].upload_time) > this.deadline[0]) {
-              if(userCon[i].comment == null){
-                alert("You have uncomment contribution !!!");
-                break;
+          if(this.role == "3"){
+            for(let i = 0; i < this.contributions.length; i++){
+              if(new Date(this.contributions[i].upload_time) > this.deadline[0]) {
+                if(this.contributions[i].comment == null){
+                  alert("You have uncomment contribution !!!");
+                  break;
+                }
               }
             }
           }
@@ -71,18 +69,16 @@ export class HomePagesComponent implements OnInit {
           .forEach(e => {
             e.contribution_path = this.bypass("https://docs.google.com/gview?url="+e.contribution_path+"&embedded=true");
           });
-          console.log(this.contributions);
-          let user = (this.groupBy(this.contributions.filter(e => e.faculty == 3),e => e.user));
-          let userCon = user.get(parseInt(this.id));
-          console.log(userCon)
-          for(let i = 0; i < userCon.length; i++){
-            if(new Date(userCon[i].upload_time) > this.deadline[0]) {
-              if(userCon[i].comment == null){
-                alert("You have uncomment contribution !!!");
-                break;
+          if(this.role == "3"){
+            for(let i = 0; i < this.contributions.length; i++){
+              if(new Date(this.contributions[i].upload_time) > this.deadline[0]) {
+                if(this.contributions[i].comment == null){
+                  alert("You have uncomment contribution !!!");
+                  break;
+                }
               }
             }
-          }
+          } 
         },
         error => {
           console.log(error);
@@ -98,14 +94,13 @@ export class HomePagesComponent implements OnInit {
             e.contribution_path = this.bypass("https://docs.google.com/gview?url="+e.contribution_path+"&embedded=true");
           });
           console.log(this.contributions);
-          let user = (this.groupBy(this.contributions.filter(e => e.faculty == 4),e => e.user));
-          let userCon = user.get(parseInt(this.id));
-          console.log(userCon)
-          for(let i = 0; i < userCon.length; i++){
-            if(new Date(userCon[i].upload_time) > this.deadline[0]) {
-              if(userCon[i].comment == null){
-                alert("You have uncomment contribution !!!");
-                break;
+          if(this.role == "3"){
+            for(let i = 0; i < this.contributions.length; i++){
+              if(new Date(this.contributions[i].upload_time) > this.deadline[0]) {
+                if(this.contributions[i].comment == null){
+                  alert("You have uncomment contribution !!!");
+                  break;
+                }
               }
             }
           }
@@ -123,17 +118,6 @@ export class HomePagesComponent implements OnInit {
             e.contribution_path = this.bypass("https://docs.google.com/gview?url="+e.contribution_path+"&embedded=true");
           });
           console.log(this.contributions);
-          let user = (this.groupBy(this.contributions,e => e.user));
-          let userCon = user.get(parseInt(this.id));
-          console.log(userCon)
-          for(let i = 0; i < userCon.length; i++){
-            if(new Date(userCon[i].upload_time) > this.deadline[0]) {
-              if(userCon[i].comment == null){
-                alert("You have uncomment contribution !!!");
-                break;
-              }
-            }
-          }
         },
         error => {
           console.log(error);
