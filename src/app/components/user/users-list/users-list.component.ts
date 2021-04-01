@@ -24,7 +24,8 @@ export class UsersListComponent implements OnInit {
   }
 
   retrieveUsers(): void {
-    this.userService.getAll()
+    if(this.role == "7"){
+      this.userService.getAll()
       .subscribe(
         data => {
           this.users = data;
@@ -33,6 +34,7 @@ export class UsersListComponent implements OnInit {
         error => {
           console.log(error);
         });
+    }
   }
 
   refreshList(): void {

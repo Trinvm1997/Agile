@@ -50,7 +50,7 @@ export class UserAddComponent implements OnInit {
       password: this.user.password,
       email: this.user.email,
       telephone: this.user.telephone,
-      avatar_path: this.currentFileUpload.url,
+      avatar_path: this.currentFileUpload == undefined ? "#" : this.currentFileUpload.url,
       birthday: new Date(this.birthday.year,this.birthday.month-1,this.birthday.day+1).toISOString().substring(0, 10),
       sex_boolean: this.user.sex_boolean
     };

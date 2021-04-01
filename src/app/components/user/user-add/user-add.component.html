@@ -1,34 +1,34 @@
 <div class="navbar navbar-expand navbar-dark bg-dark">
-  <div *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdown>
+  <div *ngIf="role == '7' || role == '9' || role == '10' || role == '8' || role == '11'" ngbDropdown>
     <button class="btn" id="dropdownBasic2" ngbDropdownToggle id="dropdown">Menu</button>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="mt-2">
-      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/roles">Roles</button>
-      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/users">Users</button>
-      <button *ngIf="role == '1' || role == '2'" ngbDropdownItem routerLink="/faculties">Faculties</button>
-      <button *ngIf="role == '1' || role == '2' || role == '3'" ngbDropdownItem routerLink="/contributions">Contributions</button>
-      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdownItem routerLink="/home">Home</button>
-      <button *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" ngbDropdownItem routerLink="/dashboard">Dashboard</button>
+      <button *ngIf="role == '7' || role == '9'" ngbDropdownItem routerLink="/roles">Roles</button>
+      <button *ngIf="role == '7' || role == '9'" ngbDropdownItem routerLink="/users">Users</button>
+      <button *ngIf="role == '7' || role == '9'" ngbDropdownItem routerLink="/faculties">Faculties</button>
+      <button *ngIf="role == '7' || role == '9' || role == '10'" ngbDropdownItem routerLink="/contributions">Contributions</button>
+      <button *ngIf="role == '7' || role == '9' || role == '10' || role == '8' || role == '11'" ngbDropdownItem routerLink="/home">Home</button>
+      <button *ngIf="role == '7' || role == '9' || role == '10' || role == '8' || role == '11'" ngbDropdownItem routerLink="/dashboard">Dashboard</button>
       <button (click)="logout()" routerLink="/login" ngbDropdownItem>Logout</button>
     </div>
   </div>
   <div class="navbar-brand mx-auto" id="brand2">OldBuff</div>
-  <div *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="navbar-nav mr-auto" id="navi">
-    <li *ngIf="role == '1' || role == '2'" class="nav-item">
+  <div *ngIf="role == '7' || role == '9' || role == '10' || role == '8' || role == '11'" class="navbar-nav mr-auto" id="navi">
+    <li *ngIf="role == '7' || role == '9'" class="nav-item">
       <a routerLink="/roles" class="nav-link">Roles</a>
     </li>
-    <li *ngIf="role == '1' || role == '2'" class="nav-item">
+    <li *ngIf="role == '7' || role == '9'" class="nav-item">
       <a routerLink="/users" class="nav-link">Users</a>
     </li>
-    <li *ngIf="role == '1' || role == '2'" class="nav-item">
+    <li *ngIf="role == '7' || role == '9'" class="nav-item">
       <a routerLink="/faculties" class="nav-link">Faculties</a>
     </li>
-    <li *ngIf="role == '1' || role == '2' || role == '3'"  class="nav-item">
+    <li *ngIf="role == '7' || role == '9' || role == '10'"  class="nav-item">
       <a routerLink="/contributions" class="nav-link">Contributions</a>
     </li>
-    <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="nav-item">
+    <li *ngIf="role == '7' || role == '9' || role == '10' || role == '8' || role == '11'" class="nav-item">
       <a routerLink="/home" class="nav-link">Home</a>
     </li>
-    <li *ngIf="role == '1' || role == '2' || role == '3' || role == '4' || role == '5'" class="nav-item">
+    <li *ngIf="role == '7' || role == '9' || role == '10' || role == '8' || role == '11'" class="nav-item">
       <a routerLink="/dashboard" class="nav-link">Dashboard</a>
     </li>
     <li class="nav-item">
@@ -150,21 +150,20 @@
         <div class="form-group">
           <label for="faculty">Faculty</label>
           <select class="custom-select" [(ngModel)]="user.faculty" name="faculty">
-            <option [value]=1>Information Technology</option>
-            <option [value]=3>Graphic Design</option>
-            <option [value]=4>Business Administration</option>
-            <option [value]=5>Admin</option>
-            <option [value]=6>Manager</option>
+            <option [value]=1>Admin</option>
+            <option [value]=2>Information Technology</option>
+            <option [value]=3>Business Administration</option>
+            <option [value]=4>Graphic Design</option>
           </select>
         </div>
         <div class="form-group">
           <label for="role">Role</label>
           <select class="custom-select" [(ngModel)]="user.role" name="role">
-            <option [value]=1>admin</option>
-            <option [value]=2>manager</option>
-            <option [value]=3>coordinator</option>
-            <option [value]=4>student</option>
-            <option [value]=5>guest</option>
+            <option [value]=7>Admin</option>
+            <option [value]=9>Manager</option>
+            <option [value]=10>Coordinator</option>
+            <option [value]=8>Student</option>
+            <option [value]=11>Guest</option>
           </select>
         </div>
       </form>
