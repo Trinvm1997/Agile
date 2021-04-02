@@ -24,15 +24,21 @@ export class HomePagesComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private loginService: LoginService,
     private voteService: VoteService,
-    private downloadService: DownloadService) { }
+    private downloadService: DownloadService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    if(this.role == undefined) {
+      this.router.navigate(['/login']);
+    }
+    else {
     this.retrieveContributions();
     this.deadline = [new Date(2021,2,28),new Date(2021,7,31),new Date(2021,11,31)];
     // if(this.deadline[0] < new Date(Date.now())){
     //   this.deadline.shift();
     //   this.deadline.push(new Date(this.deadline[1].setDate(this.deadline[1].getDate() + 121)));
     // }
+    }
   }
 
   retrieveContributions(): void {
