@@ -46,6 +46,7 @@ export class RoleDetailsComponent implements OnInit {
         response => {
           console.log(response);
           this.message = response.message;
+          this.router.navigate(['/roles']);
         },
         error => {
           console.log(error);
